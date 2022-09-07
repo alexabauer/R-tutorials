@@ -921,7 +921,7 @@ which option would work best, I recommend you play around a bit. More
 often than not, seeing the output will help you figure out what you do
 (or do not) want to do!
 
-<img src="images/maps color and size-1.png" style="display: block; margin: auto;" />
+<img src="images/maps color and size-1.png" style="display: block; margin: auto; max-width: 75%;" />
 
 This looks pretty good already. But I do not particularly care for the
 default font, and I do want to use a different color palette for each
