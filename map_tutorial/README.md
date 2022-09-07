@@ -921,7 +921,7 @@ which option would work best, I recommend you play around a bit. More
 often than not, seeing the output will help you figure out what you do
 (or do not) want to do!
 
-<img src="images/maps color and size-1.png" width="800" style="display: block; margin: auto;" />
+<img src="images/maps color and size-1.png" width="750" style="display: block; margin: auto;" />
 
 This looks pretty good already. But I do not particularly care for the
 default font, and I do want to use a different color palette for each
@@ -949,7 +949,7 @@ map_r <- ggmap(map_transparent) +
 
 And here is what it looks like now:
 
-<img src="images/map_richness-1.png" style="display: block; margin: auto;" />
+<img src="images/map_richness-1.png" width="750" style="display: block; margin: auto;" />
 
 I am pretty happy with the map. You can go ahead and save the map using
 `ggsave()` and be done with it. I recommend using `ggsave()` as you will
