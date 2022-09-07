@@ -1082,7 +1082,7 @@ div_metrics <- (p1 / p2 / p3 / p4)
 print(div_metrics)
 ```
 
-<img src="images/stacked plots-1.png" width="350" style="display: block; margin: auto;" />
+<img src="images/stacked plots-1.png" width="400" style="display: block; margin: auto;" />
 
 Not bad, right? But there is still some room for improvement.
 
@@ -1106,7 +1106,7 @@ figure <- div_metrics +
 
 Our figure now looks like this:
 
-<img src="images/figure-1.png" width="350" style="display: block; margin: auto;" />
+<img src="images/figure-1.png" width="400" style="display: block; margin: auto;" />
 
 Pretty neat, right?
 
