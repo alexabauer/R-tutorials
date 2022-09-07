@@ -5,4 +5,4 @@ I will do my best to keep it simple!
 
 ## List of tutorials 
 
-* map_tutorial: How to make quick and easy static maps in R (and make them look good!) - minimal knowledge required
+* **map_tutorial**: How to make quick and easy static maps in R (and make them look good!) - minimal knowledge required
