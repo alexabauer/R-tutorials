@@ -24,7 +24,7 @@ August 01, 2022
 
 An important aspect of any research using data collected in the
 environment is to effectively communicate the geographic context of the
-data. Maps allow for intuitive geographic data visualisation, and making
+data. Maps allow for intuitive geographic data visualization, and making
 simple static maps in base R is a relatively straightforward process.
 This tutorial, however, will focus on creating slightly more advanced
 (and prettier!) maps using the ggplot syntax.
@@ -87,8 +87,8 @@ console, as you will need to run this command only once!
 Next, we need the data we want to display on our map. In this case, I
 want to map specific ecological diversity metrics for each sampling
 point. Luckily, I already have a nifty little excel sheet at hand that
-contains both meta data and a number of calculated diversity metrics for
-each site and sampling event. Let’s go ahead and load in the file:
+contains both metadata and a number of calculated diversity metrics for
+each site and sampling event. Let’s go ahead and load the file:
 
 ``` r
 file_name <- "SS-InvCommunitites_Metrics-wide.xlsx"
@@ -749,20 +749,21 @@ longitude for each sampling site - great!
 
 ## 1. Defining the geographic range
 
-Now it is time for us to get into the actual map making progress. The
-first step should be to identify the area of interest, so we can then
-define the overall geographic range we want our map to cover. I did this
-by looking up the min and max latitude and longitude of my sites,
-respectively. You can run a quick search in R to help you find these
-values. Once you have the geospatial extend of your sampling sites
-identfied, go ahead and define the coordinate range you want your map to
-have. Make sure to choose a range that will include your min and max
-values for both the longitude and the latitude. We will save this range
-as a new variable - this way it is very easy for us to later go back and
-play around with the coordinates until we are happy with how the map
-looks like. To set the range, we start with the coordinates that will
-mark the **bottom left** corner of our soon-to-be map, followed by the
-coordinates of **top right** corner.
+Now it is time for us to get into the actual map-making progress. The
+first step should be to identify the area of interest, so we can define
+the overall geographic range we want our map to cover. I did this by
+looking up my sites’ min and max latitude and longitude, respectively.
+You can run a quick search in R to help you find these values. Once you
+have identified the geospatial extent of your sampling sites, go ahead
+and define the coordinate range you want your map to have. Make sure to
+choose a range that will include your min and max values for both the
+longitude and the latitude. We will save this range as a new variable -
+this way, it is very easy for us to go back later and play around with
+the coordinates until we are happy with how the map looks.
+
+To set the range, we start with the coordinates that will mark the
+**bottom left** corner of our soon-to-be map, followed by the
+coordinates of the **top right** corner.
 
 ``` r
 ## Investigate the geographic range of datapoints
@@ -789,17 +790,17 @@ interested in the different options this package provides, take a closer
 look at [ggmap: Spatial Visualization with
 ggplot2](https://journal.r-project.org/archive/2013-1/kahle-wickham.pdf).
 
-Personally, I like using [Stamen Maps](http://maps.stamen.com), because
-they offer a variety of map types, and all map tile sets are available
-under a Creative *Commons Attribution (CC BY 3.0)* license.
+I like using [Stamen Maps](http://maps.stamen.com), because they offer a
+variety of map types, and all map tile sets are available under a
+Creative *Commons Attribution (CC BY 3.0)* license.
 
-For this particular map, we will use the `tonder-background` maptype.
-All my sites are relatively close together and I do not want location
-labels to get in my way. Additionally, we should set a zoom level.
-Increased zoom means increased level of detail, but keep in mind that
-number of tiles that need to be loaded in will increase quite
-substantially as well. I recommend starting low and working your way up
-until you are satisfied. Here, we will go with `zoom = 8`.
+For this particular map, we will use the `toner-background` maptype. All
+my sites are relatively close together and I do not want location labels
+to get in my way. Additionally, we should set a zoom level. Increased
+zoom means increased level of detail, but keep in mind that the number
+of tiles that need to be loaded in will increase quite substantially as
+well. I recommend starting low and working your way up until you are
+satisfied. Here, we will go with `zoom = 8`.
 
 ``` r
 myMap <- get_stamenmap(bbox = myLocation,
@@ -809,16 +810,17 @@ myMap <- get_stamenmap(bbox = myLocation,
 
 This little code chunk will give us the following output:
 
-<img src="images/basemap-1.png" style="display: block; margin: auto;" />
+<img src="Tutorial_maps-git_files/figure-gfm/basemap-1.png" style="display: block; margin: auto;" />
 
-If you want change the extend of your map (change the range defined in
-`myLocation`), play around with the `zoom`, or give another `maptype` a
-try, this would be a great time to do so! I am happy with both the level
-of detail and the area this map covers. I do think, however, that the
-black background is too harsh. While we could pull different tiles using
-\`maptype = “toner-lite”, there is (sadly) no lite background toner map.
-If you like the the black and white background map, or decided to use
-another maptype, you can go ahead and jump over the next section.
+If you want to change the extend of your map (change the range defined
+in `myLocation`), play around with the `zoom`, or give another `maptype`
+a try, this would be a great time to do so! I am happy with both the
+level of detail and the area this map covers. I do think, however, that
+the black background is too harsh. While we could pull different tiles
+using \`maptype = “toner-lite”, there is (sadly) no lite background
+toner map. If you like the the black and white background map, or
+decided to use another maptype, you can go ahead and jump over to the
+next section.
 
 ### 2.1 Modifiying the base map (Optional!)
 
@@ -849,13 +851,13 @@ attributes(map_transparent) <- mapatt
 ## 3. Plotting sampling sites
 
 And now, it is finally time to make our fist map! We can now use ggmap
-and add elemets in the same way we would add them to any other `ggplot2`
-plot.
+and add elements in the same way we would add them to any other
+`ggplot2` plot.
 
-You might remember that my excel tabel contained a number of community
+You might remember that my excel table contained a number of community
 diversity metrics as well as different sampling events. Let’s say we
 want to look at the species richness across sites in August 2020. First,
-I want to create a new dataframe that will only contain the `Aug 20`
+I want to create a new data frame that will only contain the `Aug 20`
 data:
 
 ``` r
@@ -910,23 +912,23 @@ map_size <- ggmap(map_transparent) +
   ggtitle('Option 2')
 ```
 
-If you decide to go with option one, play around with the point size.
-Depeding the number of datapoints you want to display, you might want to
-de- or increase their size. Of course, you can also go ahead and combine
-both methods of visualization. In the end, it will simply come down to
-your data and what kind of information you want to bring across. If you
-are unsure which option would work best for you, I recommend you play
-around a bit. More often than not, actually seeing the output will help
-you figure out what it is that you do (or do not) want to do!
+If you choose option one, play around with the point size. Depending on
+the number of data points you want to display, you might want to de- or
+increase their size. Of course, you can also go ahead and combine both
+methods of visualization. In the end, it will simply come down to your
+data and what kind of information you want to bring across. If unsure
+which option would work best, I recommend you play around a bit. More
+often than not, seeing the output will help you figure out what you do
+(or do not) want to do!
 
-<img src="images/maps color and size-1.png" style="display: block; margin: auto;" />
+<img src="Tutorial_maps-git_files/figure-gfm/maps color and size-1.png" style="display: block; margin: auto;" />
 
-This looks pretty good already. But I do not particularily care for the
+This looks pretty good already. But I do not particularly care for the
 default font, and I do want to use a different color palette for each
-diversity metric. Plus, my dataframe contains data for two different
+diversity metric. Plus, my data frame contains data for two different
 sampling events, and I want to know if (and how) my values differ
-between sites and dates. So lets add `facet_wrap`, a costum color
-palette and a new base family to our plot:
+between sites and dates. So let’s add `facet_wrap`, a custom color
+palette, and a new base family to our plot:
 
 ``` r
 map_r <- ggmap(map_transparent) +
@@ -947,56 +949,29 @@ map_r <- ggmap(map_transparent) +
 
 And here is what it looks like now:
 
-    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family not
-    ## found in Windows font database
+<img src="Tutorial_maps-git_files/figure-gfm/map_richness-1.png" style="display: block; margin: auto;" />
 
-    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family not
-    ## found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-<img src="images/map_richness-1.png" style="display: block; margin: auto;" />
-
-I am pretty happy with the map. You can go ahead an save the map using
-`ggsave()`, and be done with it. I recommend using `ggsave()` as you
-will be able to define the format, size, and resolution of the saved
-graph - something that is very important if you are planning on having
-your map printed, e.g., for a poster or a publication. I will provide an
-example at the end of this tutorial, but personally, I am not done yet.
+I am pretty happy with the map. You can go ahead and save the map using
+`ggsave()` and be done with it. I recommend using `ggsave()` as you will
+be able to define the format, size, and resolution of the saved graph -
+something very important if you plan to have your map printed, e.g., for
+a poster or a publication. I will provide an example at the end of this
+tutorial, but personally, I am not done yet.
 
 # Combining several maps in one graph
 
 I want several of my diversity metrics to be displayed and combined into
 one figure. The easiest way would be to transpose my data into a long
 format, in which one column would contain all the different metrics, and
-then applying `facet_wrap()`. However, I would run out of options to
-assign different color palettes very soon, and I want each metric to
-have its own palette.
+then apply `facet_wrap()`. However, I would run out of options to assign
+different color palettes very soon, and I want each metric to have its
+own palette.
 
 So instead of using `facet_wrap()`, we will take the long route of
-making seperate graphs for each metric. On top of that, I want to
+making separate graphs for each metric. On top of that, I want to
 achieve the following:
 
--   only the top graph should have the facet tabels, and
+-   only the top graph should have the facet labels, and
 -   only the bottom graph should have x-axis labels.
 
 ## 1. Make individual plots
@@ -1092,10 +1067,10 @@ additional objectives I stated above.
 
 ## 2. Combine plots into one figure
 
-Now that we have all of your plots, we need to combine them into one
-figure. For this, I like to use the `patchwork` package. This package
-makes this process very easy. If you want to learn more about the
-options it provides make sure to check out [this online
+Now that we have all our plots, we need to combine them into one figure.
+For this, I like to use the `patchwork` package as this package makes
+the process very easy. If you want to learn more about the options it
+provides make sure to check out [this online
 resource](https://patchwork.data-imaginist.com/). For now, all you need
 to know is that we need to use `/` if want the plots to be on top of
 each other:
@@ -1107,222 +1082,31 @@ div_metrics <- (p1 / p2 / p3 / p4)
 print(div_metrics)
 ```
 
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-<img src="images/stacked plots-1.png" style="display: block; margin: auto;" />
+<img src="Tutorial_maps-git_files/figure-gfm/stacked plots-1.png" style="display: block; margin: auto;" />
 
 Not bad, right? But there is still some room for improvement.
 
 ## 3. Add annotations
 
 Some of the most needed additions to any plot include title, subtitle,
-and captions. Using the `patchwork` package we can simply add these
-elements using the `plot_annotation()` function, and we can further draw
-from `ggplot2:theme` elements to make adjustments to the style. For this
+and captions. Using the `patchwork` package we can add these elements
+using the `plot_annotation()` function, and we can further draw from
+`ggplot2:theme` elements to make adjustments to the style. For this
 particular figure I will add a title as well as a caption:
 
 ``` r
 figure <- div_metrics +
   plot_annotation(title = 'Macroinvertebrate Community Metrics',
+                  caption = 'Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL.',
                   theme = theme(plot.title = element_text(size = 18,
-                                                          face = "bold")),
-                  caption = 'Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL.'
+                                                          face = "bold"),
+                                ),
                   ) & theme(text = element_text('Arial Narrow'))
 ```
 
 Our figure now looks like this:
 
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font family not
-    ## found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
-    ## font family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
-    ## family not found in Windows font database
-
-<img src="images/figure-1.png" style="display: block; margin: auto;" />
+<img src="Tutorial_maps-git_files/figure-gfm/figure-1.png" style="display: block; margin: auto;" />
 
 Pretty neat, right?
 
@@ -1330,13 +1114,13 @@ Pretty neat, right?
 
 Now, all that remains is to save our new figure. Using the default
 settings in R might work well enough for web applications etc., but if
-you wanted to use your newly created maps for e.g., a print publication
-or a poster, we need to amp up the resolution! Luckily, we can use
+you want to use your newly created maps, e.g., for a print publication
+or a poster, we need to ramp up the resolution! Luckily, we can use
 ggplot2’s `ggsave()` function. This function allows you to define the
 format of the output file, as well as the size and resolution! For
 print, you want to go with a high dpi - I recommend a minimum of 300
-dpi. If you are saving your figure for a publication make sure to check
-the journal’s requirements!
+dpi. If you are saving your figure for publication, check the journal’s
+requirements!
 
 ``` r
 output_name <- "SS_ICM_maps.png"
@@ -1354,8 +1138,8 @@ ggsave(filename = output_name,
 As always, I am using relative file paths, but you could use an absolute
 file path instead.
 
-And that’s it. You are done! I hope you are happy with your map, and
-that you learnt something new while following along!
+And that’s it. You are done! I hope you are happy with your map and that
+you learned something new while following along!
 
 # Acknowledgements
 
