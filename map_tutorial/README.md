@@ -809,7 +809,7 @@ myMap <- get_stamenmap(bbox = myLocation,
 
 This little code chunk will give us the following output:
 
-<img src="Tutorial_maps-git_files/figure-gfm/basemap-1.png" style="display: block; margin: auto;" />
+<img src="images/basemap-1.png" style="display: block; margin: auto;" />
 
 If you want change the extend of your map (change the range defined in
 `myLocation`), play around with the `zoom`, or give another `maptype` a
@@ -919,7 +919,7 @@ are unsure which option would work best for you, I recommend you play
 around a bit. More often than not, actually seeing the output will help
 you figure out what it is that you do (or do not) want to do!
 
-<img src="Tutorial_maps-git_files/figure-gfm/maps color and size-1.png" style="display: block; margin: auto;" />
+<img src="images/maps color and size-1.png" style="display: block; margin: auto;" />
 
 This looks pretty good already. But I do not particularily care for the
 default font, and I do want to use a different color palette for each
@@ -974,7 +974,7 @@ And here is what it looks like now:
     ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
     ## family not found in Windows font database
 
-<img src="Tutorial_maps-git_files/figure-gfm/map_richness-1.png" style="display: block; margin: auto;" />
+<img src="images/map_richness-1.png" style="display: block; margin: auto;" />
 
 I am pretty happy with the map. You can go ahead an save the map using
 `ggsave()`, and be done with it. I recommend using `ggsave()` as you
@@ -1191,7 +1191,7 @@ print(div_metrics)
     ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
     ## family not found in Windows font database
 
-<img src="Tutorial_maps-git_files/figure-gfm/stacked plots-1.png" style="display: block; margin: auto;" />
+<img src="images/stacked plots-1.png" style="display: block; margin: auto;" />
 
 Not bad, right? But there is still some room for improvement.
 
@@ -1322,7 +1322,7 @@ Our figure now looks like this:
     ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
     ## family not found in Windows font database
 
-<img src="Tutorial_maps-git_files/figure-gfm/figure-1.png" style="display: block; margin: auto;" />
+<img src="images/figure-1.png" style="display: block; margin: auto;" />
 
 Pretty neat, right?
 
