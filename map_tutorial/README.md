@@ -810,7 +810,7 @@ myMap <- get_stamenmap(bbox = myLocation,
 
 This little code chunk will give us the following output:
 
-<img src="Tutorial_maps-git_files/figure-gfm/basemap-1.png" style="display: block; margin: auto;" />
+<img src="images/basemap-1.png" style="display: block; margin: auto;" />
 
 If you want to change the extend of your map (change the range defined
 in `myLocation`), play around with the `zoom`, or give another `maptype`
@@ -921,7 +921,7 @@ which option would work best, I recommend you play around a bit. More
 often than not, seeing the output will help you figure out what you do
 (or do not) want to do!
 
-<img src="Tutorial_maps-git_files/figure-gfm/maps color and size-1.png" style="display: block; margin: auto;" />
+<img src="images/maps color and size-1.png" style="display: block; margin: auto;" />
 
 This looks pretty good already. But I do not particularly care for the
 default font, and I do want to use a different color palette for each
@@ -949,7 +949,7 @@ map_r <- ggmap(map_transparent) +
 
 And here is what it looks like now:
 
-<img src="Tutorial_maps-git_files/figure-gfm/map_richness-1.png" style="display: block; margin: auto;" />
+<img src="images/map_richness-1.png" style="display: block; margin: auto;" />
 
 I am pretty happy with the map. You can go ahead and save the map using
 `ggsave()` and be done with it. I recommend using `ggsave()` as you will
@@ -1082,7 +1082,7 @@ div_metrics <- (p1 / p2 / p3 / p4)
 print(div_metrics)
 ```
 
-<img src="Tutorial_maps-git_files/figure-gfm/stacked plots-1.png" style="display: block; margin: auto;" />
+<img src="images/stacked plots-1.png" style="display: block; margin: auto;" />
 
 Not bad, right? But there is still some room for improvement.
 
@@ -1106,7 +1106,7 @@ figure <- div_metrics +
 
 Our figure now looks like this:
 
-<img src="Tutorial_maps-git_files/figure-gfm/figure-1.png" style="display: block; margin: auto;" />
+<img src="images/figure-1.png" style="display: block; margin: auto;" />
 
 Pretty neat, right?
 
